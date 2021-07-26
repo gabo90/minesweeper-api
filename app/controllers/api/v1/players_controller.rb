@@ -20,7 +20,7 @@ module Api
         @player = Player.new(player_params)
 
         if @player.save
-          render json: @player, status: :created, location: @player
+          render json: @player, status: :created
         else
           render json: @player.errors, status: :unprocessable_entity
         end
