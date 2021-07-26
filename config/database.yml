@@ -23,7 +23,10 @@ default: &default
 
 development:
   <<: *default
-  database: minesweeper_api_development
+  database: minesweeper
+  username: <%= Rails.application.credentials.db[:username] %>
+  password: <%= Rails.application.credentials.db[:password] %>
+  host: <%= Rails.application.credentials.db[:host] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
