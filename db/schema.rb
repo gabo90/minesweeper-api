@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 2021_07_26_090220) do
   enable_extension "plpgsql"
 
   create_table "boards", force: :cascade do |t|
-    t.integer "mines"
-    t.integer "rows"
-    t.integer "columns"
-    t.integer "mines_detected"
+    t.integer "mines", default: 0
+    t.integer "rows", default: 8
+    t.integer "columns", default: 8
+    t.integer "mines_detected", default: 0
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(version: 2021_07_26_090220) do
   end
 
   create_table "cells", force: :cascade do |t|
-    t.string "type"
-    t.boolean "active"
-    t.integer "around_mines"
+    t.string "type", default: "cell"
+    t.boolean "active", default: false
+    t.integer "around_mines", default: 0
     t.integer "row", null: false
     t.integer "column", null: false
     t.string "marked_as"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2021_07_26_090220) do
   end
 
   create_table "games", force: :cascade do |t|
-    t.string "status"
+    t.string "status", default: "initialized"
     t.string "result"
     t.bigint "player_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -52,9 +52,9 @@ ActiveRecord::Schema.define(version: 2021_07_26_090220) do
     t.string "name", null: false
     t.string "last_name", null: false
     t.string "alias", null: false
-    t.integer "played_games"
-    t.integer "games_won"
-    t.integer "games_lost"
+    t.integer "played_games", default: 0
+    t.integer "games_won", default: 0
+    t.integer "games_lost", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
