@@ -12,7 +12,7 @@ module Api
 
       # GET /boards/1
       def show
-        render json: @board
+        render json: @board, include: [:cells]
       end
 
       # POST /boards

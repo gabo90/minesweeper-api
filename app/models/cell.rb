@@ -3,6 +3,6 @@ class Cell < ApplicationRecord
 
   belongs_to :board
 
-  enumerize :type, in: %i[mine counter cell]
+  enumerize :kind, in: %i[mine counter cell]
   enumerize :marked_as, in: %i[unknown mine]
 end
