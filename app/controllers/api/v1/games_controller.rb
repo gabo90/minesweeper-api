@@ -18,9 +18,12 @@ module Api
       # POST /games
       def create
         @game = Game.new(game_params)
-
         if @game.save
-          render json: @game, status: :created, location: @game
+          # init board
+          game = GameLogic.new(@game.board)
+          game.initialize_board
+
+          render json: game.response, status: :created
         else
           render json: @game.errors, status: :unprocessable_entity
         end
@@ -49,7 +52,13 @@ module Api
 
       # Only allow a list of trusted parameters through.
       def game_params
-        params.require(:game).permit(:status, :result, :player_id)
+        params.require(:game)
+              .permit(
+                :status,
+                :result,
+                :player_id,
+                board_attributes: %i[mines rows columns]
+              )
       end
     end
   end
