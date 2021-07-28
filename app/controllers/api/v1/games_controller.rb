@@ -5,9 +5,9 @@ module Api
 
       # GET /games
       def index
-        @games = Game.all
+        @games = Game.where(player_id: params[:player_id]).includes(:board)
 
-        render json: @games
+        render json: @games, include: [board: { only: [:id] }]
       end
 
       # GET /games/1
@@ -20,10 +20,10 @@ module Api
         @game = Game.new(game_params)
         if @game.save
           # init board
-          game = GameLogic.new(@game.board)
+          game = GameLogic.new(@game)
           game.initialize_board
 
-          render json: game.response, status: :created
+          render json: @game, include: [board: { only: [:id] }], status: :created
         else
           render json: @game.errors, status: :unprocessable_entity
         end

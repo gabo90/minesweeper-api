@@ -1,8 +1,8 @@
 class GameLogic
   attr_accessor :board, :cells
 
-  def initialize(board)
-    @board = board
+  def initialize(game)
+    @board = game.board
   end
 
   def initialize_board
@@ -12,14 +12,12 @@ class GameLogic
         @cells.append({ row: row, column: col, type: 'cell' })
       end
     end
-    p "cells are #{@cells}"
     place_mines
     @board.cells.insert_all(@cells)
   end
 
   def place_mines
     mines_to_place = @board.mines
-    p "mines is #{mines_to_place}"
 
     until mines_to_place.zero?
       @cells.reject { |cell| cell[:type] == 'mine' }.map! do |cell|
@@ -31,12 +29,5 @@ class GameLogic
         end
       end
     end
-  end
-
-  def response
-    {
-      game: @board.game,
-      board_id: @board.id
-    }
   end
 end
