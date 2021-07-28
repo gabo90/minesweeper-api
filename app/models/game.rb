@@ -4,9 +4,12 @@ class Game < ApplicationRecord
   belongs_to :player
   has_one :board
 
-  enumerize :status, in: %i[initialized playing paused completed]
-  enumerize :result, in: %i[win lose]
+  enumerize :status, in: %i[initialized playing paused completed], predicates: true
+  enumerize :result, in: %i[win lose], predicates: true
 
   accepts_nested_attributes_for :board
 
+  def over!
+    update(status: :completed, result: :lose)
+  end
 end

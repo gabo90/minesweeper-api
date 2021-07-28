@@ -4,11 +4,11 @@ module Api
       before_action :set_board, only: [:show, :update, :destroy]
 
       # GET /boards
-      def index
-        @boards = Board.all
-
-        render json: @boards
-      end
+      # def index
+      #   @boards = Board.all
+      #
+      #   render json: @boards
+      # end
 
       # GET /boards/1
       def show
@@ -16,15 +16,15 @@ module Api
       end
 
       # POST /boards
-      def create
-        @board = Board.new(board_params)
-
-        if @board.save
-          render json: @board, status: :created, location: @board
-        else
-          render json: @board.errors, status: :unprocessable_entity
-        end
-      end
+      # def create
+      #   @board = Board.new(board_params)
+      #
+      #   if @board.save
+      #     render json: @board, status: :created, location: @board
+      #   else
+      #     render json: @board.errors, status: :unprocessable_entity
+      #   end
+      # end
 
       # PATCH/PUT /boards/1
       def update
@@ -36,9 +36,9 @@ module Api
       end
 
       # DELETE /boards/1
-      def destroy
-        @board.destroy
-      end
+      # def destroy
+      #   @board.destroy
+      # end
 
       private
       # Use callbacks to share common setup or constraints between actions.

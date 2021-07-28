@@ -25,7 +25,7 @@ class GameLogic
 
         if [true, false].sample
           mines_to_place -= 1
-          cell[:kind] == 'mine'
+          cell[:kind] = 'mine'
         end
       end
     end

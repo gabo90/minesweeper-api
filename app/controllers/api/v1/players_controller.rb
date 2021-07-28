@@ -11,9 +11,9 @@ module Api
       end
 
       # GET /players/1
-      def show
-        render json: @player
-      end
+      # def show
+      #   render json: @player
+      # end
 
       # POST /players
       def create
@@ -27,13 +27,13 @@ module Api
       end
 
       # PATCH/PUT /players/1
-      def update
-        if @player.update(player_params)
-          render json: @player
-        else
-          render json: @player.errors, status: :unprocessable_entity
-        end
-      end
+      # def update
+      #   if @player.update(player_params)
+      #     render json: @player
+      #   else
+      #     render json: @player.errors, status: :unprocessable_entity
+      #   end
+      # end
 
       # DELETE /players/1
       def destroy
