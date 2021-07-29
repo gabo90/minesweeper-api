@@ -12,4 +12,8 @@ class Game < ApplicationRecord
   def over!
     update(status: :completed, result: :lose)
   end
+
+  def can_resume?
+    initialized? || paused?
+  end
 end

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       end
       resources :games
       put '/cells/:id/activate', to: 'cells#activate'
+      put '/cells/:id/mark', to: 'cells#mark'
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_28_142612) do
+ActiveRecord::Schema.define(version: 2021_07_29_011049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_07_28_142612) do
     t.integer "mines", default: 0
     t.integer "rows", default: 8
     t.integer "columns", default: 8
-    t.integer "mines_detected", default: 0
+    t.integer "remaining_mines", default: 0
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

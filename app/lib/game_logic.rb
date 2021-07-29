@@ -1,8 +1,8 @@
 class GameLogic
-  attr_accessor :board, :cells
 
   def initialize(game)
     @board = game.board
+    @cells = nil
   end
 
   def initialize_board

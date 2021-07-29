@@ -1,45 +1,31 @@
 module Api
   module V1
     class CellsController < ApplicationController
-      before_action :set_cell, only: [:show, :activate]
-      before_action :set_board_logic, only: [:activate]
-
-      # GET /cells
-      # def index
-      #   @cells = Cell.all
-      #
-      #   render json: @cells
-      # end
+      before_action :set_cell, only: %i[show activate mark]
+      before_action :set_board_logic, only: %i[activate mark]
 
       # GET /cells/1
       def show
         render json: @cell
       end
 
-      # POST /cells
-      # def create
-      #   @cell = Cell.new(cell_params)
-      #
-      #   if @cell.save
-      #     render json: @cell, status: :created, location: @cell
-      #   else
-      #     render json: @cell.errors, status: :unprocessable_entity
-      #   end
-      # end
-
-      # PATCH/PUT /cells/1
+      # PATCH/PUT /cells/1/activate
       def activate
-        if @board_logic.activate_cell(@cell)
+        if @board_logic.activate_cell(@cell.reload)
           render status: :ok
         else
           render json: @cell.errors, status: :unprocessable_entity
         end
       end
 
-      # DELETE /cells/1
-      # def destroy
-      #   @cell.destroy
-      # end
+      # PATCH/PUT /cells/1/mark
+      def mark
+        if @board_logic.mark_cell(@cell.reload, cell_params[:marked_as])
+          render status: :ok
+        else
+          render json: @cell.errors, status: :unprocessable_entity
+        end
+      end
 
       private
 
@@ -54,7 +40,7 @@ module Api
 
       # Only allow a list of trusted parameters through.
       def cell_params
-        params.require(:cell).permit(:active, :marked_as)
+        params.require(:cell).permit(:marked_as)
       end
     end
   end
