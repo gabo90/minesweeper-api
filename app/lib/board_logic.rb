@@ -72,8 +72,6 @@ class BoardLogic
     filter_adjacent(blanks)
     @counter_cells = (@counter_cells + counters).uniq
     @blank_cells = (@blank_cells + blanks).uniq
-    p "total counters #{@counter_cells.pluck(:id, :row, :column, :kind)}"
-    p "total blanks #{@blank_cells.pluck(:id, :row, :column, :kind)}"
   end
 
   def filter_adjacent(cells)
