@@ -1,18 +1,18 @@
 # README
 
 #### Decisiones tomadas:
-* Se priorizó la funcionalidad antes de la prueba
+* Se priorizó la funcionalidad antes que de las pruebas
 
-* Se intentó completar la experiencia del juego en lugar de refinar el código.
+* Se intentó completar la experiencia del juego en antes de refinar el código.
 
-* A pesar de no ser una prioridad, intenté dejar el código lo más legible posible
+* A pesar de no ser una prioridad, se intentó dejar el código lo más legible posible
 
-* la implementación, el manejo de errores y las pruebas unitarias se dejaron para el final, pero no llegaron al momento
+* El despliegue, el manejo de errores y las pruebas unitarias se dejaron para el final, pero no se pudieron completar
 
 #### Notas importantes
 
-* La version de ruby es la 2.7.2
+* La versión de ruby es la 2.7.2
 
-* La version de Rails es la 6.1
+* La versión de Rails es la 6.1
 
 * La base de datos es PostgreSQL por lo que se puede utilizar la imagen oficial de docker
