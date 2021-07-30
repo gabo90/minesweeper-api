@@ -13,6 +13,10 @@ class Game < ApplicationRecord
     update(status: :completed, result: :lose)
   end
 
+  def you_win!
+    update(status: :completed, result: :win)
+  end
+
   def can_resume?
     initialized? || paused?
   end

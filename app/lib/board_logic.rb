@@ -13,6 +13,7 @@ class BoardLogic
   def activate_cell(cell)
     return true if cell.marked_as?
     return explode_mines if cell.mine?
+    return can_win?(cell) unless cell.cell?
 
     activate_adjacent(cell)
   end
@@ -83,5 +84,26 @@ class BoardLogic
       counter_cells = adjacent_cells(c).inactive.counters.where.not(id: @counter_cells.pluck(:id))
       @counter_cells = (@counter_cells + counter_cells).uniq
     end
+  end
+
+  def can_win?(cell)
+    cells = @board.cells
+    remaining_counters = cells.counters.inactive.count
+    valid_red_flag_marks = cells.with_red_flag.active
+    remaining_mines = @board.mines - valid_red_flag_marks.count
+    if remaining_counters == 1 || (remaining_mines.zero? && remaining_counters == 2)
+      you_win
+    else
+      cell.update(active: true)
+    end
+  end
+
+  def you_win
+    @board.cells.counters.update_all(active: true)
+    @game.you_win!
+    total_played = @board.player.played_games + 1
+    total_lost = @board.player.games_won + 1
+    @board.player.update!(played_games: total_played, games_lost: total_lost)
+    true
   end
 end
